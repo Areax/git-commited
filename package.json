@@ -1,0 +1,24 @@
+{
+  "name": "keep-me-commiting",
+  "version": "1.0.0",
+  "description": "Keeps the slack updated with who hasn't publicly committed recently",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wski/keep-me-commiting.git"
+  },
+  "author": "wski <contact.mattdylan@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wski/keep-me-commiting/issues"
+  },
+  "homepage": "https://github.com/wski/keep-me-commiting",
+  "dependencies": {
+    "cron": "^1.1.0",
+    "request": "^2.71.0",
+    "slack-bot": "^1.1.5"
+  }
+}
