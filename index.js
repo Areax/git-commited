@@ -7,7 +7,7 @@ function closestValue(goal, list) {
     return list.reduce((prev, curr) => Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
 }
 
-// Currently, run the function every day at 3:00 EST
+// Currently, run the function every day at 3:00pm EST
 new CronJob('0 15 * * *', function() {
 	(function checkCommits() {
 		config['githubUsernames'].forEach(function(gitHubUsername) {
@@ -36,7 +36,7 @@ new CronJob('0 15 * * *', function() {
 					
 					// have the commit bot remind people on slack
 					slackBot.send({
-					  text: "You've never even committed to the GitHub project before @" + gitHubUsername + "!",
+					  text: "It's been so long GitHub's tracker doesn't even know how long it's been since you've last committed @" + gitHubUsername + "!",
 					  channel: config["slackChannels"].concat([gitHubUsername]),
 					  username: 'Commit_Reminder_Bot'
 					});
