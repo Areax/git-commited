@@ -3,8 +3,8 @@ const request = require('request');
 var slackBot = require('slack-bot')(config.slackWebhook);
 const CronJob = require('cron').CronJob;
 
-function closestValue(goal, list) {
-    return list.reduce((prev, curr) => Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
+function closestFloorValue(goal, list) {
+    return list.reduce((prev, curr) => goal >= curr ? curr : prev);
 }
 
 // Currently, run the function every day at 3:00pm EST
@@ -48,7 +48,7 @@ new CronJob('0 15 * * *', function() {
 					const lastCommitTime = githubEvents[ele]["created_at"];
 
 					var daysSinceCommit = parseInt(now.split('-')[2].split('T')[0]) - parseInt(lastCommitTime.split('-')[2].split('T')[0]);
-					var accessValue = closestValue(daysSinceCommit, config["daysAtLeastSinceLastCommit"]);
+					var accessValue = closestFloorValue(daysSinceCommit, config["daysAtLeastSinceLastCommit"]);
 					
 					// the user has committed before the bot was requested to start reminding the user
 					if(accessValue == 0) {
